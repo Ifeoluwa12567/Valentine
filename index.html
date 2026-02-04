@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Be My Valentine?</title>
+
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #ffe6eb, #fff0f5);
+      --card-bg: #ffffff;
+      --primary: #e6396a;
+      --secondary: #f4a3b5;
+      --text-dark: #333;
+      --shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: var(--card-bg);
+      width: 100%;
+      max-width: 380px;
+      padding: 2.2rem 2rem 2.5rem;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .heart {
+      font-size: 3rem;
+      margin-bottom: 0.6rem;
+      animation: pulse 1.6s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0.5rem 0 0.4rem;
+      font-size: 1.7rem;
+    }
+
+    .name {
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    p {
+      color: #555;
+      font-size: 0.95rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    button {
+      border: none;
+      padding: 0.7rem 1.3rem;
+      font-size: 0.95rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      min-width: 110px;
+    }
+
+    .yes {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .yes:hover {
+      background: #cf2f5c;
+      transform: translateY(-2px);
+    }
+
+    .no {
+      background: #f2f2f2;
+      color: #444;
+    }
+
+    .no:hover {
+      background: #e6e6e6;
+    }
+
+    .message {
+      display: none;
+      margin-top: 1.8rem;
+      font-size: 1rem;
+      color: var(--text-dark);
+      animation: fadeIn 0.5s ease;
+    }
+
+    .message span {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <div class="heart">❤️</div>
+
+    <h1>Will you be my Valentine?</h1>
+    <div class="name">Hey <span id="personName">[Your Name]</span></div>
+
+    <p>
+      I wanted to ask you something simple but important.
+      Take your time… but choose wisely 🙂
+    </p>
+
+    <div class="buttons">
+      <button class="yes" onclick="sayYes()">Yes 💖</button>
+      <button class="no" onclick="sayNo()">No 😅</button>
+    </div>
+
+    <div class="message" id="responseMessage"></div>
+
+    <footer>
+      Made with courage ✨
+    </footer>
+  </div>
+
+  <script>
+    // Personalize name here
+    const name = "Sarah"; // ← CHANGE THIS
+    document.getElementById("personName").textContent = name;
+
+    let noClickCount = 0;
+
+    function sayYes() {
+      const msg = document.getElementById("responseMessage");
+      msg.style.display = "block";
+      msg.innerHTML = "You just made my day, <span>" + name + "</span> ❤️";
+    }
+
+    function sayNo() {
+      const msg = document.getElementById("responseMessage");
+      msg.style.display = "block";
+      noClickCount++;
+
+      if (noClickCount === 1) {
+        msg.innerHTML = "Are you sure? 😌";
+      } else if (noClickCount === 2) {
+        msg.innerHTML = "Still thinking about it? 😊";
+      } else {
+        msg.innerHTML = "Okay… but the Yes button is still there 💕";
+      }
+    }
+  </script>
+</body>
+</html>
+
